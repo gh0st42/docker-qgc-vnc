@@ -2,7 +2,7 @@ FROM ubuntu:20.04
 RUN  apt-get update
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y lxde-core lxterminal
-RUN apt-get -y install tightvncserver firefox nano\
+RUN apt-get -y install tightvncserver firefox nano wmctrl \
     gstreamer1.0-plugins-bad gstreamer1.0-libav gstreamer1.0-gl \
     wget sudo less net-tools iputils-ping && \
     apt-get remove modemmanager -y && rm -rf /var/lib/apt/lists/*
@@ -35,7 +35,7 @@ ENV USER root
 # COPY script. removes Lock files and start tightvncserver
 COPY entrypoint.sh /entrypoint.sh
 # set password
-RUN printf "maketest\nmaketest\nn\n" | vncpasswd
+RUN printf "test\ntest\nn\n" | vncpasswd
 
 EXPOSE 5901
 ENTRYPOINT ["/entrypoint.sh" ]
